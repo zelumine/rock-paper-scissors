@@ -37,13 +37,14 @@
         let playerScore = 0;
         let computerScore = 0;
 
-        let playerSelection = prompt("What's your move?");
+        let playerSelection = prompt("Choose rock, paper or scissors");
         playerSelection = capitalize(playerSelection);
         console.log("Player plays: " + playerSelection);
 
         computerPlay();
         
-        let computerSelection = compMove;        
+        let computerSelection = compMove;
+        let roundNumber = 1;        
         
         function playRound(playerSelection, computerSelection) {
             if ((playerSelection === "Rock" && computerSelection === "Scissors") || (playerSelection === "Scissors" && computerSelection === "Paper") || (playerSelection === "Paper" && computerSelection === "Rock")) {
@@ -59,8 +60,31 @@
             return "Oops! It's a tie!";
         }
         }
-        console.log(playRound(playerSelection, computerSelection));
 
+        function newRound() {
+            playerSelection = prompt("Choose rock, paper or scissors");
+            playerSelection = capitalize(playerSelection);
+            console.log("Player plays: " + playerSelection);
+            console.log("Computer plays: " + compMove);
+            console.log(playRound(playerSelection, computerSelection));
+        }
 
+        function game() {
+            playRound(playerSelection, computerSelection);
+            while(roundNumber < 5){
+                    newRound();
+                    roundNumber++;
+            }
+            if(playerScore > computerScore) {
+                return `You have ${playerScore} points and computer has ${computerScore} points. Congrats, you win!`;
+            } else if(playerScore === computerScore) {
+                return `Well, it's a tie. Congrats to both of you, I guess.`;
+            } else {
+                return `You have ${playerScore} points and computer has ${computerScore} points. Sorry buddy, you lose.`;
+            }
+        }
+
+        game();
+        console.log(game());
     </script>
 </html>
