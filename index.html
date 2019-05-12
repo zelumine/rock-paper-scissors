@@ -5,6 +5,11 @@
         <title>Rock, Paper, Scissors Game!</title>
     </head>
     <script>
+        let compMove;
+        let playerScore = 0;
+        let computerScore = 0;
+        let roundNumber = 1;  
+
         function capitalize(str) {
                 let newStr = str.toLowerCase();
                 let finalStr = newStr.split("");
@@ -17,9 +22,7 @@
 
                 finalStr = finalStr.join(""); 
                 return finalStr;
-            }
-        
-        let compMove;
+            }  
 
         function computerPlay() {
             let compNumber = Math.floor(Math.random() * 3);
@@ -31,32 +34,30 @@
             } else {
                 compMove = "Scissors";
             }
-            console.log("Computer plays: " + compMove);
-        }
+        }    
 
-        let playerScore = 0;
-        let computerScore = 0;
-
-        let playerSelection = prompt("Choose rock, paper or scissors");
-        playerSelection = capitalize(playerSelection);
-        console.log("Player plays: " + playerSelection);
+        let playerSelection = "";
 
         computerPlay();
         
         let computerSelection = compMove;
-        let roundNumber = 1;        
         
         function playRound(playerSelection, computerSelection) {
-            if ((playerSelection === "Rock" && computerSelection === "Scissors") || (playerSelection === "Scissors" && computerSelection === "Paper") || (playerSelection === "Paper" && computerSelection === "Rock")) {
+            if ((playerSelection === "Rock" && computerSelection === "Scissors") || 
+                (playerSelection === "Scissors" && computerSelection === "Paper") || 
+                (playerSelection === "Paper" && computerSelection === "Rock")) {
             playerScore++;
-            console.log(`Player: ${playerScore} - Computer: ${computerScore}`);
             return `${playerSelection} beats ${computerSelection}. You win, congrats!`;
-        } else if ((playerSelection === "Scissors" && computerSelection === "Rock") || (playerSelection === "Paper" && computerSelection === "Scissors") || (playerSelection === "Rock" && computerSelection === "Paper")) {
+        } else if ((playerSelection === "Scissors" && computerSelection === "Rock") || 
+                    (playerSelection === "Paper" && computerSelection === "Scissors") || 
+                    (playerSelection === "Rock" && computerSelection === "Paper")) {
             computerScore++;
-            console.log(`Player: ${playerScore} - Computer: ${computerScore}`);
             return `${computerSelection} beats ${playerSelection}... You lose!`;
-        } else if ((playerSelection === "Scissors" && computerSelection === "Scissors") || (playerSelection === "Rock" && computerSelection === "Rock") || (playerSelection === "Paper" && computerSelection === "Paper")) {
-            console.log(`Player: ${playerScore} - Computer: ${computerScore}`);
+        } else if ((playerSelection === "Scissors" && computerSelection === "Scissors") || 
+                    (playerSelection === "Rock" && computerSelection === "Rock") || 
+                    (playerSelection === "Paper" && computerSelection === "Paper")) {
+            computerScore += 0;
+            playerScore += 0;
             return "Oops! It's a tie!";
         }
         }
@@ -67,13 +68,14 @@
             console.log("Player plays: " + playerSelection);
             console.log("Computer plays: " + compMove);
             console.log(playRound(playerSelection, computerSelection));
+            console.log(`Player: ${playerScore} - Computer: ${computerScore} (round ${roundNumber})`);
         }
 
         function game() {
-            playRound(playerSelection, computerSelection);
-            while(roundNumber < 5){
-                    newRound();
-                    roundNumber++;
+            while(roundNumber <= 5){
+                playRound(playerSelection, computerSelection);
+                newRound();
+                ++roundNumber;
             }
             if(playerScore > computerScore) {
                 return `You have ${playerScore} points and computer has ${computerScore} points. Congrats, you win!`;
