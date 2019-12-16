@@ -78,4 +78,10 @@ h1 {
 #result {
   font-weight: bold;
   font-size: 1.5rem;
+}
+
+@media (max-width: 480px) {
+  * {
+    font-size: 24px;
   }
+}
