@@ -81,22 +81,21 @@ h1 {
   font-size: 1.5rem;
 }
 
-@media (max-width: 480px) {
-  p {
-    font-size: 2.5rem;
-    text-align: center;
-  }
-
-  #container {
-    height: 98vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+@media (max-width: 767px) {
+  body {
+    width: 100vw;
+    height: 100vh;
   }
 
   h2 {
     text-align: center;
+    margin-top: -50px;
     margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 2.2rem;
+    text-align: center;
   }
 
   #buttons {
